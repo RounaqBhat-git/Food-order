@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>YMTFoods - The Best Restaurants In Your Home</title>
+  <meta name="title" content="YMTFoods - The Best Restaurants In Your Home">
+
+  <link rel="stylesheet" href="./assets/css/style1.css">
+
+
+  <link rel="stylesheet" href="./assets/css/partnership-modal.css">
+  <link rel="stylesheet" href="./assets/css/orders-modal.css">
+  <link rel="stylesheet" href="./assets/css/checkout-modal.css">
+
+
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="loading-container" data-loading-container>
+    <div class="loading-circle"></div>
+  </div>
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <img src="./assets/images/YMTtestlogo.svg" width="148" height="38" alt="YMTFoods home">
+      </a>
+
+      <nav class="navbar" data-navbar>
+        <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+        <a href="#" class="logo">
+          <img src="./assets/images/YMTtestlogo.svg" width="148" height="38" alt="YMTFoods home">
+        </a>
+
+<ul class="navbar-list">
+
+          <li class="navbar-item"><a href="#home" class="navbar-link" data-nav-link>Home</a></li>
+          <li class="navbar-item"><a href="#about-us" class="navbar-link" data-nav-link>About Us</a></li>
+          <li class="navbar-item"><a href="#restaurants" class="navbar-link" data-nav-link>Restaurants</a></li>
+          <li class="navbar-item"><a href="#contact" class="navbar-link" data-nav-link>Contacts</a></li>
+
+        </ul>
+      </nav>
+
+<div class="header-action">
+        <button class="search-btn" aria-label="search" data-search-toggler>
+          <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+        <button class="cart-btn" aria-label="cart" data-cart-toggler>
+          <ion-icon name="bag" aria-hidden="true"></ion-icon>
+          <span class="btn-badge" data-cart-count>0</span>
+        </button>
+
+        <button class="btn btn-primary has-after" data-auth-btn>Login / Sign Up</button>
+        <div class="profile-dropdown is-hidden" data-profile-dropdown>
+          <span style="display:none" aria-hidden="true">.</span>
+
+          <button class="profile-toggle" type="button" data-profile-toggle>
+            <span class="profile-avatar" aria-hidden="true">👤</span>
+            <span class="profile-text" data-profile-text>Profile</span>
+            <ion-icon name="chevron-down-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+
+          <div class="profile-menu" data-profile-menu>
+            <button type="button" class="profile-item" data-orders-btn>My Orders</button>
+            <button type="button" class="profile-item" data-profile-btn>Profile</button>
+            <button type="button" class="profile-item profile-logout" data-logout-btn>Logout</button>
+          </div>
+
+        </div>
+
+
+      </div>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+      </button>
+
+      <div class="overlay" data-overlay data-nav-toggler data-cart-toggler></div>
+
+    </div>
+  </header>
+
+
+  <!-- 
+    - #CART SIDEBAR
+  -->
+
+<div class="cart-sidebar" data-cart-sidebar>
+    <div class="sidebar-top">
+      <h2 class="h3 sidebar-title">Your Cart</h2>
+
+      <button class="nav-close-btn" aria-label="close cart" data-cart-toggler>
+        <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+      </button>
+    </div>
+
+    <ul class="cart-list" data-cart-list>
+      <!-- Cart items will be dynamically added here -->
+    </ul>
+
+    <div class="sidebar-bottom">
+      <div class="total-wrapper">
+        <p class="total-text">Total:</p>
+        <data class="total-price" value="0" data-cart-total>$0.00</data>
+      </div>
+
+      <button class="btn btn-primary has-after">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal" data-search-modal>
+
+    <div class="search-backdrop" data-search-toggler></div>
+    <div class="search-panel">
+      <div class="search-header">
+        <h3 class="h4">Search</h3>
+        <button class="nav-close-btn" aria-label="close search" data-search-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+      <div class="search-input-wrapper">
+        <input type="search" name="search" placeholder="Search restaurants, cuisine..." class="search-input" data-search-input>
+        <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+      </div>
+      <div class="search-results">
+        <p class="search-hint">Start typing to search...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Auth Modal -->
+  <div class="login-modal" data-login-modal>
+    <div class="login-backdrop" data-login-toggler></div>
+
+    <div class="login-panel" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+      <div class="login-header">
+        <div>
+          <h3 class="h4" id="auth-modal-title">Login / Sign Up</h3>
+        </div>
+        <button class="nav-close-btn" aria-label="close login" data-login-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+
+      <div class="auth-tabs" role="tablist" aria-label="Authentication tabs">
+        <button type="button" class="auth-tab is-active" data-auth-tab="login" role="tab" aria-selected="true">Login</button>
+        <button type="button" class="auth-tab" data-auth-tab="signup" role="tab" aria-selected="false">Signup</button>
+      </div>
+
+      <form class="login-form" data-login-form>
+        <!-- login/signup shared fields -->
+        <div class="input-wrapper">
+          <label for="auth-email" class="input-label">Email</label>
+          <input type="email" name="email" id="auth-email" placeholder="Enter your email" class="input-field" required autocomplete="email" />
+        </div>
+
+        <div class="input-wrapper">
+          <label for="auth-password" class="input-label">Password</label>
+          <input type="password" name="password" id="auth-password" placeholder="Enter your password" class="input-field" required autocomplete="current-password" />
+        </div>
+
+        <!-- signup-only field -->
+        <div class="input-wrapper auth-field--signup" data-auth-field="username">
+          <label for="auth-username" class="input-label">Username</label>
+          <input type="text" name="username" id="auth-username" placeholder="Choose a username" class="input-field" required autocomplete="username" />
+        </div>
+
+        <button type="submit" class="btn btn-primary has-after login-submit-btn" data-auth-submit>Login</button>
+        <p class="auth-helper" data-auth-helper></p>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="section hero has-bg-image" id="home" aria-label="home"
+        style="background-image: url('./assets/images/hero-bg.png')">
+        <div class="container">
+
+          <div class="hero-content" data-reveal="left">
+            <h1 class="h1 hero-title">The Best Restaurants In Your Home</h1>
+
+            <p class="hero-text">
+              Explore the best restaurants in your area and enjoy fast delivery, exclusive deals, and a seamless ordering experience.
+            </p>
+
+            <a href="#restaurants" class="btn btn-secondary has-after">Order Now</a>
+          </div>
+
+          <figure class="hero-banner" data-reveal>
+
+            <img src="./assets/images/hero-banner.png" width="680" height="720" alt="hero banner" class="w-100">
+
+            <img src="./assets/images/hero-shape-1.svg" width="338" height="138" alt="shape" class="shape shape-1">
+
+            <img src="./assets/images/hero-shape-2.svg" width="237" height="80" alt="shape" class="shape shape-2">
+
+</figure>
+
+        </div>
+      </section>
+
+      <!-- 
+        - #ABOUT US
+      -->
+
+      <section class="section about-us" id="about-us" aria-labelledby="about-us-label">
+        <div class="container">
+
+          <div class="about-us-wrapper">
+<!-- Left Side - Text Content -->
+            <div class="about-us-content" data-reveal="left">
+              <span class="about-us-label">About Us</span>
+              <h2 class="h2 about-us-title" id="about-us-label">Bringing People Together</h2>
+              
+              <p class="about-us-text">
+                Food is more than just a meal—it's an experience. We aim to bring people together by making it easier to enjoy great food anytime, anywhere.
+              </p>
+
+<div class="about-us-stats">
+                <div class="stat-item">
+                  <span class="stat-number">10+</span>
+                  <span class="stat-label">Restaurants</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">500+</span>
+                  <span class="stat-label">Orders Delivered</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">4.5★</span>
+                  <span class="stat-label">Average Rating</span>
+                </div>
+              </div>
+
+<div class="about-us-features">
+                <div class="feature-item">
+                  <ion-icon name="checkmark-circle-outline" aria-hidden="true"></ion-icon>
+                  <span>Easy Ordering</span>
+                </div>
+                <div class="feature-item">
+                  <ion-icon name="checkmark-circle-outline" aria-hidden="true"></ion-icon>
+                  <span>Fast Delivery</span>
+                </div>
+                <div class="feature-item">
+                  <ion-icon name="checkmark-circle-outline" aria-hidden="true"></ion-icon>
+                  <span>Top Restaurants</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Side - Image Grid -->
+            <div class="about-us-images" data-reveal="right">
+              <div class="image-grid">
+                <img src="./assets/images/about us.jpg" alt="Delicious food" class="about-img" loading="lazy">
+                <img src="./assets/images/about us 2.jpg" alt="Restaurant dish" class="about-img" loading="lazy">
+                <img src="./assets/images/about us3.jpg" alt="Food delivery" class="about-img" loading="lazy">
+                <img src="./assets/images/about us4.jpg" alt="Gourmet meal" class="about-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+
+      <!-- 
+        - #FEATURED RESTAURANTS (Horizontal Scroll)
+      -->
+
+      <section class="section featured-restaurants" aria-labelledby="featured-label">
+        <div class="container">
+
+          <h2 class="h2 section-title" id="featured-label">Featured Restaurants</h2>
+
+          <div class="carousel-wrapper">
+            <button class="carousel-btn scroll-left" aria-label="scroll left">
+              <ion-icon name="chevron-back-outline" aria-hidden="true"></ion-icon>
+            </button>
+            
+            <div class="carousel-container" data-carousel>
+              <!-- Dynamic content will be loaded from script.js -->
+            </div>
+
+            <button class="carousel-btn scroll-right" aria-label="scroll right">
+              <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 
+        - #TOP RESTAURANT
+      -->
+
+      <section class="section top-restaurant" id="restaurants" aria-labelledby="top-restaurent-label">
+        <div class="container">
+
+          <div class="section-content-wrapper" data-reveal="left">
+            <h2 class="h2 section-title" id="top-restaurent-label">
+              Explore Restaurants,Find Your Next Meal.
+            </h2>
+
+            <p class="section-text">
+              Discover top-rated restaurants, trending cuisines, and local favorites near you.
+            </p>
+          </div>
+
+<div class="filter-wrapper" data-reveal="right">
+            <select name="cuisine" class="filter-select" data-cuisine-filter>
+              <option value="all">All Cuisines</option>
+              <option value="indian">Indian</option>
+              <option value="chinese">Chinese</option>
+              <option value="fast food">Fast Food</option>
+              <option value="american">American</option>
+            </select>
+          </div>
+
+          <ul class="grid-list" data-restaurant-list data-restaurant-limit="6">
+
+            <li class="empty-state" data-empty-state>
+              <ion-icon name="restaurant-outline" aria-hidden="true"></ion-icon>
+              <h3 class="h3">No restaurants available</h3>
+              <p>Try searching for something else or changing the cuisine filter.</p>
+            </li>
+
+            <!-- Dynamic content will be loaded from script.js -->
+
+          </ul>
+
+          <div class="see-all-wrapper">
+            <button class="btn btn-secondary has-after" data-see-all-btn type="button">
+              <span class="span">See All Restaurants</span>
+              <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+            </button>
+          </div>
+
+
+
+
+        </div>
+      </section>
+
+      <!-- 
+        - #HOW IT WORKS
+      -->
+
+      <section class="section instruction" id="about" aria-labelledby="instruction-label">
+        <div class="container">
+
+          <h2 class="h2 section-title" id="instruction-label" data-reveal>Order Food in 3 Easy Steps</h2>
+
+          <p class="section-text" data-reveal>
+            Browse restaurants, explore menus, and get your favorite meals delivered quickly.
+          </p>
+
+          <ul class="grid-list">
+
+            <li data-reveal="left">
+              <div class="instruction-card">
+
+                <figure class="card-banner">
+                  <img src="./assets/images/instructuion-1.png" width="300" height="154" loading="lazy"
+                    alt="Select Restaurant" class="w-100">
+                </figure>
+
+                <div class="card-content">
+
+                  <h3 class="h5 card-title">
+                    <span class="span">01</span>
+                    Select Restaurant
+                  </h3>
+
+                  <p class="card-text">
+                    Explore top-rated restaurants and discover cuisines you love near you.
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li data-reveal>
+              <div class="instruction-card">
+
+                <figure class="card-banner">
+                  <img src="./assets/images/instructuion-2.png" width="300" height="154" loading="lazy"
+                    alt="Select menu" class="w-100">
+                </figure>
+
+                <div class="card-content">
+
+                  <h3 class="h5 card-title">
+                    <span class="span">02</span>
+                    Pick Your Meal
+                  </h3>
+
+                  <p class="card-text">
+                    Browse menus, customize your order, and add your favorite dishes to the cart with ease.
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li data-reveal="right">
+              <div class="instruction-card">
+
+                <figure class="card-banner">
+                  <img src="./assets/images/instructuion-3.png" width="300" height="154" loading="lazy"
+                    alt="Wait for delivery" class="w-100">
+                </figure>
+
+                <div class="card-content">
+
+                  <h3 class="h5 card-title">
+                    <span class="span">03</span>
+                    Fast Delivery
+                  </h3>
+
+                  <p class="card-text">
+                    Sit back and relax while your food is prepared and delivered to your doorstep.
+                  </p>
+
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+      <!-- 
+        - #CTA
+      -->
+
+      <section class="section cta has-bg-image" aria-labelledby="cta-label"
+        style="background-image: url('./assets/images/hero-bg.png')">
+        <div class="container">
+
+          <figure class="cta-banner" data-reveal="left">
+            <img src="./assets/images/cta-banner.png" width="680" height="704" loading="lazy" alt="cta banner"
+              class="w-100">
+
+            <!-- subtle floating mini food cards -->
+            <div class="food-float food-float--1" aria-hidden="true">
+              <img src="./assets/images/food1.jpg" alt="" loading="lazy" width="140" height="110">
+            </div>
+            <div class="food-float food-float--2" aria-hidden="true">
+              <img src="./assets/images/food2.jpg" alt="" loading="lazy" width="160" height="120">
+            </div>
+            <div class="food-float food-float--3" aria-hidden="true">
+              <img src="./assets/images/food3.jpg" alt="" loading="lazy" width="150" height="110">
+            </div>
+          </figure>
+
+          <div class="cta-content" data-reveal="right">
+
+            <h2 class="h3 section-title" id="cta-label">
+              What are you craving tonight?
+            </h2>
+
+            <p class="section-text">
+              Follow your mood—pick a cuisine, discover fresh favorites, and find the perfect meal waiting just for
+              you.
+              <span class="cta-emph">No rush, just cravings.</span>
+            </p>
+
+            <div class="cuisine-chips" role="list" aria-label="Cuisine categories">
+              <button class="chip" type="button" data-cuisine-chip>Italian</button>
+              <button class="chip" type="button" data-cuisine-chip>Chinese</button>
+              <button class="chip" type="button" data-cuisine-chip>Kashmiri</button>
+              <button class="chip" type="button" data-cuisine-chip>Continental</button>
+              <button class="chip" type="button" data-cuisine-chip>Desserts</button>
+            </div>
+
+            <a href="#restaurants" class="btn btn-primary has-after" id="explore-cuisines-btn">Explore Cuisines</a>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      <section class="stats" aria-label="statistics" data-reveal>
+        <div class="container">
+
+          <ul class="grid-list">
+
+            <li>
+              <h2 class="h3 section-title">Service shows good taste.</h2>
+            </li>
+
+            <li class="stats-item">
+              <span class="span">976</span>
+
+              <p class="stats-text">
+                Satisfied <br>
+                Customer
+              </p>
+            </li>
+
+            <li class="stats-item">
+              <span class="span">12</span>
+
+              <p class="stats-text">
+                Best <br>
+                Restaurants
+              </p>
+            </li>
+
+            <li class="stats-item">
+              <span class="span">1K+</span>
+
+              <p class="stats-text">
+                Food <br>
+                Delivered
+              </p>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+      <!-- 
+        - #TESTIMONIALS
+      -->
+
+      <section class="section testi" aria-labelledby="testi-label">
+        <div class="container">
+
+          <div class="testi-content" data-reveal="left">
+
+            <h2 class="h2 section-title" id="testi-label">What customers say about us</h2>
+
+            <div class="testi-slider" data-testid-slider>
+              <div class="testi-quote" aria-hidden="true">
+                <ion-icon name="return-down-forward-outline"></ion-icon>
+              </div>
+
+              <div class="testi-slides">
+                <blockquote class="testi-text testi-slide is-active" data-testid-slide>
+                  “The interface is smooth and ordering food feels super quick. Delivery tracking is excellent.”
+                </blockquote>
+                <blockquote class="testi-text testi-slide" data-testid-slide>
+                  “I picked a cuisine on a whim and it nailed the cravings. The food arrived hot, and the timing was spot on.”
+                </blockquote>
+                <blockquote class="testi-text testi-slide" data-testid-slide>
+                  “Love the way menus are organized—finding what I want takes seconds. Plus, the delivery updates kept me relaxed.”
+                </blockquote>
+              </div>
+
+              <div class="testi-controls" aria-label="Testimonial navigation">
+                <button class="testi-arrow" type="button" data-testid-prev aria-label="Previous testimonial">
+                  <ion-icon name="chevron-back-outline" aria-hidden="true"></ion-icon>
+                </button>
+
+                <div class="testi-dots" data-testid-dots role="tablist" aria-label="Choose testimonial"></div>
+
+                <button class="testi-arrow" type="button" data-testid-next aria-label="Next testimonial">
+                  <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+                </button>
+              </div>
+
+              <div class="wrapper testi-author" aria-label="Author">
+                <img src="./assets/images/testi-avatar.jpg" width="70" height="70" loading="lazy" alt="Author" class="author-img" data-testid-avatar>
+
+                <div>
+                  <p class="author-title" data-testid-author-name>Thomas Adamson</p>
+
+                  <div class="rating-wrapper" aria-label="Rating" data-testid-author-rating>
+                    <ion-icon name="star" aria-hidden="true"></ion-icon>
+                    <ion-icon name="star" aria-hidden="true"></ion-icon>
+                    <ion-icon name="star" aria-hidden="true"></ion-icon>
+                    <ion-icon name="star" aria-hidden="true"></ion-icon>
+                    <ion-icon name="star" aria-hidden="true"></ion-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <figure class="testi-banner" data-reveal="right">
+            <img src="./assets/images/testimonial-banner.png" width="680" height="588" alt="testimonial banner"
+              class="w-100">
+          </figure>
+
+        </div>
+      </section>
+
+      <!-- 
+        - #PARTNERSHIP
+      -->
+
+      <section class="section partnership" aria-label="partnership">
+        <div class="container">
+
+          <h2 class="h2 section-title" data-reveal>Partner with YMT Foods</h2>
+
+          <p class="partnership-tagline">
+            Join our growing network of restaurants, delivery partners, and food businesses.
+          </p>
+
+
+          <ul class="grid-list">
+
+            <li data-reveal="left">
+              <div class="partnership-card">
+
+                <figure class="card-banner img-holder" style="--width: 640; --height: 402;">
+                  <img src="./assets/images/partner-1.jpg" width="640" height="402" loading="lazy" alt="Join Courier"
+                    class="img-cover">
+                </figure>
+
+                <div class="card-content">
+                  <div class="partnership-heading">
+                    <ion-icon name="bicycle-outline" aria-hidden="true"></ion-icon>
+                    <h3 class="h5 card-title">Join Courier</h3>
+                  </div>
+
+                  <p class="partnership-desc">Join our delivery network and earn flexible income while delivering food across your city..</p>
+
+                  <a href="#" class="btn btn-primary has-after">
+                    <span class="span">Learn More</span>
+
+                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                  </a>
+                </div>
+
+              </div>
+            </li>
+
+            <li data-reveal="right">
+              <div class="partnership-card">
+
+                <figure class="card-banner img-holder" style="--width: 640; --height: 402;">
+                  <img src="./assets/images/partner-2.jpg" width="640" height="402" loading="lazy" alt="Join Restaurant Partner"
+                    class="img-cover">
+                </figure>
+
+                <div class="card-content">
+                  <div class="partnership-heading">
+                    <ion-icon name="restaurant-outline" aria-hidden="true"></ion-icon>
+                    <h3 class="h5 card-title">Join Restaurant Partner</h3>
+                  </div>
+
+                  <p class="partnership-desc">Reach new customers and grow your sales with YMT Foods.</p>
+
+                  <a href="#" class="btn btn-primary has-after">
+                    <span class="span">Learn More</span>
+
+                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                  </a>
+                </div>
+
+              </div>
+            </li>
+
+            <li data-reveal>
+              <div class="partnership-card">
+
+                <figure class="card-banner img-holder" style="--width: 640; --height: 402;">
+                  <img src="./assets/images/brandcollab.jpg" width="640" height="402" loading="lazy" alt="Become a Brand Partner"
+                    class="img-cover">
+                </figure>
+
+                <div class="card-content">
+                  <div class="partnership-heading">
+                    <ion-icon name="sparkles-outline" aria-hidden="true"></ion-icon>
+                    <h3 class="h5 card-title">Become a Brand Partner</h3>
+                  </div>
+
+                  <p class="partnership-desc">Promote your products with offers customers actually love.</p>
+
+                  <a href="#" class="btn btn-primary has-after">
+                    <span class="span">Learn More</span>
+
+                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                  </a>
+                </div>
+
+              </div>
+            </li>
+
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #NEWSLETTER
+      -->
+
+      <section class="section newsletter" aria-label="newsletter">
+        <div class="container">
+
+          <figure class="newsletter-banner" data-reveal="left">
+            <img src="./assets/images/newsletter-banenr.png" width="680" height="405" loading="lazy" alt="Illustration"
+              class="w-100">
+          </figure>
+
+          <div class="newsletter-content" data-reveal="right">
+            <h2 class="h4 section-title">
+              Get the menu of your favorite restaurants every day
+            </h2>
+
+            <div class="input-wrapper">
+              <input type="email" name="email_address" placeholder="Enter email address" required class="input-field" data-newsletter-email>
+
+              <button type="button" class="btn btn-primary has-after" data-newsletter-btn>
+                <ion-icon name="notifications-outline" aria-hidden="true"></ion-icon>
+
+                <span class="span">Subscribe</span>
+              </button>
+            </div>
+
+
+
+          </div>
+
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer" id="contact">
+    <div class="container">
+
+      <div class="section footer-top grid-list">
+
+        <div class="footer-brand">
+
+          <a href="#" class="logo">
+            <img src="./assets/images/YMTtestlogo.svg" width="148" height="38" alt="fasteat home">
+          </a>
+
+          <h2 class="h2 section-title">Your Favorite Meals, Anytime</h2>
+
+          <p class="section-text">
+            Explore top restaurants, discover new cuisines, and enjoy fast delivery right to your doorstep.
+          </p>
+
+        </div>
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title h5">Quick Links</p>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">
+              <span class="span">Home</span>
+
+              <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">
+              <span class="span">About Us</span>
+
+              <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#restaurants" class="footer-link">
+              <span class="span">Restaurants</span>
+
+              <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">
+              <span class="span">Contacts</span>
+
+              <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title h5">Contacts</p>
+          </li>
+
+          <li>
+            <address class="address">
+              <ion-icon name="location" aria-hidden="true"></ion-icon>
+
+              <span class="span">2837 al-yamama road, Riyadh, Saudi Arabia</span>
+            </address>
+          </li>
+
+          <li>
+            <a href="mailto:quickeat@mail.net" class="footer-link">
+              <ion-icon name="mail" aria-hidden="true"></ion-icon>
+
+              <span class="span">ymtfoodtest@mail.net</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="tel:+12344567890" class="footer-link">
+              <ion-icon name="call" aria-hidden="true"></ion-icon>
+
+              <span class="span">+1 234 456 78 90</span>
+            </a>
+          </li>
+
+          <li>
+            <ul class="social-list">
+
+              <li>
+                <a href="#" class="social-link">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="social-link">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="social-link">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+        </ul>
+
+      </div>
+
+      <div class="footer-bottom">
+
+        <p class="copyright">
+          Copyright YMTFoods. All rights reserved.
+        </p>
+
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- Checkout Modal -->
+  <div class="checkout-modal" data-checkout-modal aria-modal="true" role="dialog" aria-labelledby="checkout-modal-title">
+    <div class="checkout-backdrop" data-checkout-toggler></div>
+
+    <div class="checkout-panel">
+      <div class="checkout-header">
+        <h2 class="checkout-title" id="checkout-modal-title">Checkout</h2>
+        <button class="checkout-close" aria-label="close checkout" data-checkout-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+
+      <div class="checkout-body">
+        <div class="checkout-grid">
+          <section class="section-card" aria-label="Order Summary">
+            <h3>Order Summary</h3>
+
+            <div class="order-items" data-checkout-order-items></div>
+
+            <div class="order-summary-totals">
+              <div class="row">
+                <span>Subtotal</span>
+                <strong data-checkout-subtotal>$0.00</strong>
+              </div>
+              <div class="row">
+                <span>Delivery Fee</span>
+                <strong data-checkout-delivery>$0.00</strong>
+              </div>
+              <div class="row total">
+                <span>Total</span>
+                <strong data-checkout-total>$0.00</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="section-card" aria-label="Delivery & Payment">
+            <h3>Delivery Information</h3>
+
+            <form class="form" data-checkout-form>
+              <div class="field">
+                <label class="label" for="checkout-fullname">Full Name</label>
+                <input class="input" type="text" id="checkout-fullname" name="fullname" required />
+              </div>
+
+              <div class="field">
+                <label class="label" for="checkout-phone">Phone Number</label>
+                <input class="input" type="tel" id="checkout-phone" name="phone" required />
+              </div>
+
+              <div class="field">
+                <label class="label" for="checkout-address">Delivery Address</label>
+                <textarea class="input" id="checkout-address" name="address" rows="3" required></textarea>
+              </div>
+
+              <h3 style="margin-top: 6px;">Payment Method</h3>
+
+              <div class="payment-group" role="radiogroup" aria-label="Payment method">
+                <label class="pay-option">
+                  <input type="radio" name="payment" value="cod" checked />
+                  <span>Cash on Delivery</span>
+                </label>
+                <label class="pay-option">
+                  <input type="radio" name="payment" value="upi" />
+                  <span>UPI</span>
+                </label>
+                <label class="pay-option">
+                  <input type="radio" name="payment" value="card" />
+                  <span>Card Payment</span>
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-primary has-after place-order" data-checkout-place-order>
+                Place Order
+              </button>
+
+              <div class="success-message" data-checkout-success>
+                Your order has been placed successfully
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Orders Modal -->
+  <!-- (inject template for My Orders UI) -->
+  <div class="orders-modal" data-orders-modal aria-modal="true" role="dialog" aria-labelledby="orders-modal-title">
+
+    <div class="orders-backdrop" data-orders-toggler></div>
+    <div class="orders-panel">
+      <div class="orders-header">
+        <h3 class="h4" id="orders-modal-title">My Orders</h3>
+        <button class="nav-close-btn" aria-label="close orders" data-orders-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+
+      <div class="orders-body" data-orders-list></div>
+    </div>
+  </div>
+
+  <!-- Profile Modal -->
+  <div class="profile-modal" data-profile-modal aria-modal="true" role="dialog" aria-labelledby="profile-modal-title">
+    <div class="profile-backdrop" data-profile-toggler></div>
+
+    <div class="profile-panel">
+      <div class="profile-header">
+        <h3 class="h4" id="profile-modal-title">Profile</h3>
+        <button class="nav-close-btn" aria-label="close profile" data-profile-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+
+      <div class="profile-body">
+        <div class="profile-view" data-profile-view>
+          <div class="avatar-wrapper">
+            <span class="avatar-icon">👤</span>
+          </div>
+          <div class="info-group">
+            <p class="info-label">Name</p>
+            <p class="info-value" data-profile-name-view>John Doe</p>
+          </div>
+          <div class="info-group">
+            <p class="info-label">Email</p>
+            <p class="info-value" data-profile-email-view>john@example.com</p>
+          </div>
+          <div class="info-group">
+            <p class="info-label">Phone</p>
+            <p class="info-value" data-profile-phone-view>Not provided</p>
+          </div>
+          <div class="info-group">
+            <p class="info-label">Saved Address</p>
+            <p class="info-value" data-profile-address-view>Not provided</p>
+          </div>
+          <button class="btn btn-primary has-after" data-profile-edit-btn>Edit Profile</button>
+        </div>
+
+        <form class="profile-form is-hidden" data-profile-form>
+          <div class="input-wrapper">
+            <label for="profile-name" class="input-label">Name</label>
+            <input type="text" name="name" id="profile-name" class="input-field" required>
+          </div>
+          <div class="input-wrapper">
+            <label for="profile-email" class="input-label">Email</label>
+            <input type="email" name="email" id="profile-email" class="input-field" required>
+          </div>
+          <div class="input-wrapper">
+            <label for="profile-phone" class="input-label">Phone</label>
+            <input type="tel" name="phone" id="profile-phone" class="input-field" required>
+          </div>
+          <div class="input-wrapper">
+            <label for="profile-address" class="input-label">Address</label>
+            <textarea name="address" id="profile-address" class="input-field" required></textarea>
+          </div>
+          <div class="btn-group">
+            <button type="submit" class="btn btn-primary has-after">Save Changes</button>
+            <button type="button" class="btn btn-secondary" data-profile-cancel-btn>Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Partnership Modal -->
+  <section class="partnership-modal" id="partnership-modal" aria-modal="true" role="dialog" aria-labelledby="partnership-modal-title">
+
+    <div class="partnership-modal-backdrop" id="partnership-modal-backdrop"></div>
+
+    <div class="partnership-modal-panel">
+      <button class="partnership-modal-close" id="partnership-modal-close" aria-label="Close partnership form">
+        <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+      </button>
+
+      <div class="partnership-modal-body">
+        <div class="partnership-modal-header">
+          <figure class="partnership-modal-hero">
+            <img id="partnership-modal-img" src="./assets/images/partner-1.jpg" alt="Partnership" />
+          </figure>
+
+          <div>
+            <h2 class="partnership-modal-title" id="partnership-modal-title">Join Courier</h2>
+            <p class="partnership-modal-desc" id="partnership-modal-desc">Join our delivery network and earn flexible income while delivering food across your city.</p>
+          </div>
+        </div>
+
+        <ul class="partnership-benefits" id="partnership-modal-points" aria-label="Benefits"></ul>
+
+        <form class="partnership-modal-form" id="partnership-modal-form">
+          <div class="partnership-form-grid">
+            <div class="partnership-input-wrapper">
+              <label class="partnership-input-label" for="partnership-fullname">Full Name</label>
+              <input class="partnership-input" type="text" name="fullname" id="partnership-fullname" placeholder="Your full name" required />
+            </div>
+
+            <div class="partnership-input-wrapper">
+              <label class="partnership-input-label" for="partnership-email">Email</label>
+              <input class="partnership-input" type="email" name="email" id="partnership-email" placeholder="you@example.com" required />
+            </div>
+
+            <div class="partnership-input-wrapper">
+              <label class="partnership-input-label" for="partnership-phone">Phone Number</label>
+              <input class="partnership-input" type="tel" name="phone" id="partnership-phone" placeholder="Your phone number" required />
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary has-after partnership-form-cta" id="partnership-modal-cta">
+            Apply Now
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Modal -->
+
+  <div class="menu-modal" id="menu-modal" aria-modal="true" role="dialog" aria-labelledby="menu-modal-title">
+    <div class="menu-modal-backdrop" id="menu-modal-backdrop"></div>
+    <div class="menu-modal-panel">
+      <div class="menu-modal-header">
+        <div class="menu-modal-info">
+          <h2 class="menu-modal-title" id="menu-modal-title">Olive Oven</h2>
+          <p class="menu-modal-cuisine" id="menu-modal-cuisine">Italian</p>
+        </div>
+        <button class="menu-modal-close" id="menu-modal-close" aria-label="Close menu">
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+      <div class="menu-modal-body" id="menu-modal-body">
+        <!-- Populated by JavaScript -->
+      </div>
+      <div class="menu-modal-footer" id="menu-modal-footer">
+        <div class="menu-footer-summary">
+          <span class="menu-footer-count" id="menu-footer-count">0 items</span>
+          <span class="menu-footer-sep">·</span>
+          <span class="menu-footer-total" id="menu-footer-total">₹0</span>
+        </div>
+        <div class="menu-footer-actions">
+          <button class="menu-footer-cart-btn" id="menu-view-cart-btn">View Cart</button>
+          <button class="menu-footer-checkout-btn" id="menu-checkout-btn">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" data-toast-container></div>
+
+  <!-- custom js link -->
+  <script src="./assets/js/script.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <script src="./patch-partnership.js"></script>
+
+</body>
+
+</html>

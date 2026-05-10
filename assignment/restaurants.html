@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>YMTFoods - Restaurants</title>
+  <meta name="title" content="YMTFoods - Restaurants" />
+
+  <link rel="stylesheet" href="./assets/css/style1.css" />
+  <link rel="stylesheet" href="./assets/css/orders-modal.css" />
+  <link rel="stylesheet" href="./assets/css/checkout-modal.css" />
+
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="loading-container" data-loading-container>
+    <div class="loading-circle"></div>
+  </div>
+
+  <header class="header" data-header>
+    <div class="container">
+      <a href="./index.html" class="logo">
+        <img src="./assets/images/YMTtestlogo.svg" width="148" height="38" alt="YMTFoods home" />
+      </a>
+
+      <nav class="navbar" data-navbar>
+        <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+        <a href="./index.html" class="logo">
+          <img src="./assets/images/YMTtestlogo.svg" width="148" height="38" alt="YMTFoods home" />
+        </a>
+
+        <ul class="navbar-list">
+          <li class="navbar-item"><a href="./index.html#home" class="navbar-link" data-nav-link>Home</a></li>
+          <li class="navbar-item"><a href="./index.html#about-us" class="navbar-link" data-nav-link>About Us</a></li>
+          <li class="navbar-item"><a href="./restaurants.html" class="navbar-link" data-nav-link>Restaurants</a></li>
+          <li class="navbar-item"><a href="./index.html#contact" class="navbar-link" data-nav-link>Contacts</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-action">
+        <button class="search-btn" aria-label="search" data-search-toggler>
+          <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+        <button class="cart-btn" aria-label="cart" data-cart-toggler>
+          <ion-icon name="bag" aria-hidden="true"></ion-icon>
+          <span class="btn-badge" data-cart-count>0</span>
+        </button>
+
+        <button class="btn btn-primary has-after" data-auth-btn>Login / Sign Up</button>
+        <div class="profile-dropdown is-hidden" data-profile-dropdown>
+          <span style="display:none" aria-hidden="true">.</span>
+
+          <button class="profile-toggle" type="button" data-profile-toggle>
+            <span class="profile-avatar" aria-hidden="true">👤</span>
+            <span class="profile-text" data-profile-text>Profile</span>
+            <ion-icon name="chevron-down-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+          <div class="profile-menu" data-profile-menu>
+
+            <button type="button" class="profile-item" data-orders-btn>My Orders</button>
+            <button type="button" class="profile-item" data-profile-btn>Profile</button>
+            <button type="button" class="profile-item profile-logout" data-logout-btn>Logout</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+      </button>
+
+      <div class="overlay" data-overlay data-nav-toggler data-cart-toggler></div>
+    </div>
+  </header>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-sidebar" data-cart-sidebar>
+    <div class="sidebar-top">
+      <h2 class="h3 sidebar-title">Your Cart</h2>
+
+      <button class="nav-close-btn" aria-label="close cart" data-cart-toggler>
+        <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+      </button>
+    </div>
+
+    <ul class="cart-list" data-cart-list>
+      <!-- Cart items will be dynamically added here -->
+    </ul>
+
+    <div class="sidebar-bottom">
+      <div class="total-wrapper">
+        <p class="total-text">Total:</p>
+        <data class="total-price" value="0" data-cart-total>$0.00</data>
+      </div>
+
+      <button class="btn btn-primary has-after">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Search Modal (reused from script.js toggler) -->
+  <div class="search-modal" data-search-modal>
+    <div class="search-backdrop" data-search-toggler></div>
+    <div class="search-panel">
+      <div class="search-header">
+        <h3 class="h4">Search</h3>
+        <button class="nav-close-btn" aria-label="close search" data-search-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+      <div class="search-input-wrapper">
+        <input type="search" name="search" placeholder="Search restaurants, cuisine..." class="search-input" data-search-input />
+        <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+      </div>
+      <div class="search-results">
+        <p class="search-hint">Start typing to search...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Auth Modal -->
+  <div class="login-modal" data-login-modal>
+    <div class="login-backdrop" data-login-toggler></div>
+    <div class="login-panel" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+      <div class="login-header">
+        <div>
+          <h3 class="h4" id="auth-modal-title">Login / Sign Up</h3>
+        </div>
+        <button class="nav-close-btn" aria-label="close login" data-login-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+
+      <div class="auth-tabs" role="tablist" aria-label="Authentication tabs">
+        <button type="button" class="auth-tab is-active" data-auth-tab="login" role="tab" aria-selected="true">Login</button>
+        <button type="button" class="auth-tab" data-auth-tab="signup" role="tab" aria-selected="false">Signup</button>
+      </div>
+
+      <form class="login-form" data-login-form>
+        <!-- login/signup shared fields -->
+        <div class="input-wrapper">
+          <label for="auth-email" class="input-label">Email</label>
+          <input type="email" name="email" id="auth-email" placeholder="Enter your email" class="input-field" required autocomplete="email" />
+        </div>
+
+        <div class="input-wrapper">
+          <label for="auth-password" class="input-label">Password</label>
+          <input type="password" name="password" id="auth-password" placeholder="Enter your password" class="input-field" required autocomplete="current-password" />
+        </div>
+
+        <!-- signup-only field -->
+        <div class="input-wrapper auth-field--signup" data-auth-field="username">
+          <label for="auth-username" class="input-label">Username</label>
+          <input type="text" name="username" id="auth-username" placeholder="Choose a username" class="input-field" required autocomplete="username" />
+        </div>
+
+        <button type="submit" class="btn btn-primary has-after login-submit-btn" data-auth-submit>Login</button>
+        <p class="auth-helper" data-auth-helper></p>
+      </form>
+    </div>
+  </div>
+
+
+  <main>
+    <article>
+      <!-- RESTAURANTS PAGE -->
+      <section class="section top-restaurant" id="restaurants" aria-labelledby="all-restaurants-title" style="margin-top: 40px;">
+        <div class="container">
+          <div class="section-content-wrapper" data-reveal="left">
+            <h2 class="h2 section-title" id="all-restaurants-title" style="font-size: var(--fs-3);">12 Best Restaurants in Your City</h2>
+            <p class="section-subtitle">
+              Discover top-rated restaurants, cafes, and cuisines near you.
+            </p>
+            <p class="results-count">Showing 12 restaurants</p>
+          </div>
+
+          <div class="filter-wrapper" data-reveal="right">
+            <div class="search-input-field">
+              <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+              <input class="input-field search-input" type="search" placeholder="Search restaurants..." data-search-input />
+            </div>
+
+            <select name="cuisine" class="filter-select" data-cuisine-filter>
+              <option value="all">All Cuisines</option>
+              <option value="international">International</option>
+              <option value="mediterranean">Mediterranean</option>
+              <option value="indian">Indian</option>
+              <option value="street food">Street Food</option>
+              <option value="kashmiri">Kashmiri</option>
+              <option value="cafe">Cafe</option>
+              <option value="chinese">Chinese</option>
+              <option value="chinese fast food">Chinese Fast Food</option>
+              <option value="italian">Italian</option>
+              <option value="american fast food">American Fast Food</option>
+              <option value="north indian">North Indian</option>
+            </select>
+          </div>
+
+          <ul class="grid-list" data-restaurant-list>
+            <li class="empty-state" data-empty-state>
+              <ion-icon name="restaurant-outline" aria-hidden="true"></ion-icon>
+              <h3 class="h3">No restaurants available</h3>
+              <p>Try searching for something else or changing the cuisine filter.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <!-- Orders Modal -->
+  <div class="orders-modal" data-orders-modal aria-modal="true" role="dialog" aria-labelledby="orders-modal-title">
+    <div class="orders-backdrop" data-orders-toggler></div>
+    <div class="orders-panel">
+      <div class="orders-header">
+        <h3 class="h4" id="orders-modal-title">My Orders</h3>
+        <button class="nav-close-btn" aria-label="close orders" data-orders-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+
+      <div class="orders-body" data-orders-list></div>
+    </div>
+  </div>
+
+  <footer class="footer" id="contact">
+
+    <div class="container">
+      <div class="section footer-top grid-list">
+        <div class="footer-brand">
+          <a href="./index.html" class="logo">
+            <img src="./assets/images/YMTtestlogo.svg" width="148" height="38" alt="fasteat home" />
+          </a>
+          <h2 class="h2 section-title">The Best Restaurants in Your Home</h2>
+          <p class="section-text">
+            Vitae congue mauris rhoncus aenean. Enim nulla aliquet porttitor lacus luctus accumsan tortor posuere.
+            Tempus egestas sed sed risus pretium quam.
+          </p>
+        </div>
+
+        <ul class="footer-list">
+          <li>
+            <p class="footer-list-title h5">Menu</p>
+          </li>
+          <li><a href="./index.html#home" class="footer-link"><span class="span">Home</span><ion-icon name="arrow-forward" aria-hidden="true"></ion-icon></a></li>
+          <li><a href="./index.html#about-us" class="footer-link"><span class="span">About Us</span><ion-icon name="arrow-forward" aria-hidden="true"></ion-icon></a></li>
+          <li><a href="./restaurants.html" class="footer-link"><span class="span">Restaurants</span><ion-icon name="arrow-forward" aria-hidden="true"></ion-icon></a></li>
+          <li><a href="./index.html#contact" class="footer-link"><span class="span">Contacts</span><ion-icon name="arrow-forward" aria-hidden="true"></ion-icon></a></li>
+        </ul>
+
+        <ul class="footer-list">
+          <li>
+            <p class="footer-list-title h5">Contacts</p>
+          </li>
+          <li>
+            <address class="address">
+              <ion-icon name="location" aria-hidden="true"></ion-icon>
+              <span class="span">2837 al-yamama road, Riyadh, Saudi Arabia</span>
+            </address>
+          </li>
+          <li><a href="mailto:quickeat@mail.net" class="footer-link"><ion-icon name="mail" aria-hidden="true"></ion-icon><span class="span">ymtfoodtest@mail.net</span></a></li>
+          <li><a href="tel:+12344567890" class="footer-link"><ion-icon name="call" aria-hidden="true"></ion-icon><span class="span">+1 234 456 78 90</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">Copyright YMTFoods. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Profile Modal -->
+  <div class="profile-modal" data-profile-modal aria-modal="true" role="dialog" aria-labelledby="profile-modal-title">
+    <div class="profile-backdrop" data-profile-toggler></div>
+
+    <div class="profile-panel">
+      <div class="profile-header">
+        <h3 class="h4" id="profile-modal-title">Profile</h3>
+        <button class="nav-close-btn" aria-label="close profile" data-profile-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+
+      <div class="profile-body">
+        <div class="profile-view" data-profile-view>
+          <div class="avatar-wrapper">
+            <span class="avatar-icon">👤</span>
+          </div>
+          <div class="info-group">
+            <p class="info-label">Name</p>
+            <p class="info-value" data-profile-name-view>John Doe</p>
+          </div>
+          <div class="info-group">
+            <p class="info-label">Email</p>
+            <p class="info-value" data-profile-email-view>john@example.com</p>
+          </div>
+          <div class="info-group">
+            <p class="info-label">Phone</p>
+            <p class="info-value" data-profile-phone-view>Not provided</p>
+          </div>
+          <div class="info-group">
+            <p class="info-label">Saved Address</p>
+            <p class="info-value" data-profile-address-view>Not provided</p>
+          </div>
+          <button class="btn btn-primary has-after" data-profile-edit-btn>Edit Profile</button>
+        </div>
+
+        <form class="profile-form is-hidden" data-profile-form>
+          <div class="input-wrapper">
+            <label for="profile-name" class="input-label">Name</label>
+            <input type="text" name="name" id="profile-name" class="input-field" required>
+          </div>
+          <div class="input-wrapper">
+            <label for="profile-email" class="input-label">Email</label>
+            <input type="email" name="email" id="profile-email" class="input-field" required>
+          </div>
+          <div class="input-wrapper">
+            <label for="profile-phone" class="input-label">Phone</label>
+            <input type="tel" name="phone" id="profile-phone" class="input-field" required>
+          </div>
+          <div class="input-wrapper">
+            <label for="profile-address" class="input-label">Address</label>
+            <textarea name="address" id="profile-address" class="input-field" required></textarea>
+          </div>
+          <div class="btn-group">
+            <button type="submit" class="btn btn-primary has-after">Save Changes</button>
+            <button type="button" class="btn btn-secondary" data-profile-cancel-btn>Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu Modal -->
+  <div class="menu-modal" id="menu-modal" aria-modal="true" role="dialog" aria-labelledby="menu-modal-title">
+    <div class="menu-modal-backdrop" id="menu-modal-backdrop"></div>
+    <div class="menu-modal-panel">
+      <div class="menu-modal-header">
+        <div class="menu-modal-info">
+          <h2 class="menu-modal-title" id="menu-modal-title">Olive Oven</h2>
+          <p class="menu-modal-cuisine" id="menu-modal-cuisine">Italian</p>
+        </div>
+        <button class="menu-modal-close" id="menu-modal-close" aria-label="Close menu">
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+      <div class="menu-modal-body" id="menu-modal-body"></div>
+      <div class="menu-modal-footer" id="menu-modal-footer">
+        <div class="menu-footer-summary">
+          <span class="menu-footer-count" id="menu-footer-count">0 items</span>
+          <span class="menu-footer-sep">·</span>
+          <span class="menu-footer-total" id="menu-footer-total">₹0</span>
+        </div>
+        <div class="menu-footer-actions">
+          <button class="menu-footer-cart-btn" id="menu-view-cart-btn">View Cart</button>
+          <button class="menu-footer-checkout-btn" id="menu-checkout-btn">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" data-toast-container></div>
+
+  <script src="./assets/js/script.js"></script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
+

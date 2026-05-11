@@ -32,6 +32,57 @@
         <img src="./assets/images/YMTtestlogo.svg" width="148" height="38" alt="YMTFoods home" />
       </a>
 
+      <!-- Location (navbar) -->
+      <div class="location" data-location>
+        <button class="location-trigger" type="button" data-location-toggle aria-label="Select delivery location">
+          <span class="location-pin" aria-hidden="true">
+            <ion-icon name="location-outline"></ion-icon>
+          </span>
+
+          <span class="location-text">
+            <span class="location-delivering">Delivering to</span>
+            <span class="location-title" data-location-title>Select Location</span>
+          </span>
+
+          <ion-icon class="location-chevron" name="chevron-down-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+        <div class="location-dropdown" data-location-modal aria-hidden="true">
+          <div class="location-dropdown-inner">
+            <div class="location-modal-top">
+              <p class="location-modal-hint">Choose your delivery area</p>
+            </div>
+
+            <div class="location-actions">
+              <button class="btn btn-secondary location-detect" type="button" data-location-detect>
+                Detect current location
+              </button>
+
+              <div class="location-manual">
+                <label class="location-label" for="location-city">Select city</label>
+                <select id="location-city" class="location-select" data-location-select>
+                  <option value="" selected>Select Location</option>
+                  <option value="Rajbagh, Srinagar">Rajbagh, Srinagar</option>
+                  <option value="Nowhatta, Srinagar">Nowhatta, Srinagar</option>
+                  <option value="Downtown, Srinagar">Downtown, Srinagar</option>
+                  <option value="Gupkar, Srinagar">Gupkar, Srinagar</option>
+                </select>
+              </div>
+
+              <div class="location-search">
+                <label class="location-label" for="location-search-input">Search location</label>
+                <div class="location-search-input">
+                  <input id="location-search-input" class="location-input" type="search" placeholder="Type an area / locality" data-location-search>
+                  <button class="location-search-apply" type="button" data-location-search-apply aria-label="Apply searched location">
+                    Apply
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <nav class="navbar" data-navbar>
         <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
           <ion-icon name="close-outline" aria-hidden="true"></ion-icon>

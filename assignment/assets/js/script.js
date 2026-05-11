@@ -673,6 +673,72 @@ window.changeQuantity = (index, delta) => {
   saveCart();
 };
 
+/**
+ * LOCATION (Navbar)
+ */
+
+const locationTextEl = document.querySelector('[data-location-text]');
+const LOCATION_STORAGE_KEY = 'foodOrderLocation';
+
+const setLocationText = (text) => {
+  if (!locationTextEl) return;
+  locationTextEl.textContent = (text || '').trim();
+};
+
+const geoToDemoCityName = (lat, lon) => {
+  // No reverse-geocoding API in this project; best-effort demo mapping.
+  if (!Number.isFinite(lat) || !Number.isFinite(lon)) return null;
+
+  // Srinagar (J&K)
+  if (lat >= 33.7 && lat <= 34.4 && lon >= 74.0 && lon <= 76.5) return 'Srinagar';
+  // Delhi
+  if (lat >= 28.2 && lat <= 29.8 && lon >= 76.5 && lon <= 78.5) return 'Delhi';
+  // Mumbai
+  if (lat >= 18.8 && lat <= 20.0 && lon >= 72.6 && lon <= 73.6) return 'Mumbai';
+  // Bangalore
+  if (lat >= 12.8 && lat <= 13.5 && lon >= 77.0 && lon <= 78.8) return 'Bangalore';
+
+  return null;
+};
+
+const detectCurrentLocation = () => {
+  if (!navigator.geolocation) {
+    setLocationText('📍 Location Unavailable');
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const lat = pos.coords.latitude;
+      const lon = pos.coords.longitude;
+      const cityName = geoToDemoCityName(lat, lon);
+
+      if (!cityName) {
+        setLocationText('📍 Location Unavailable');
+        localStorage.removeItem(LOCATION_STORAGE_KEY);
+        return;
+      }
+
+      const display = `📍 ${cityName}`;
+      setLocationText(display);
+      localStorage.setItem(LOCATION_STORAGE_KEY, display);
+    },
+    () => {
+      setLocationText('📍 Location Unavailable');
+      localStorage.removeItem(LOCATION_STORAGE_KEY);
+    },
+    { enableHighAccuracy: false, timeout: 6500, maximumAge: 300000 }
+  );
+};
+
+// Init from storage (if previously detected)
+const storedLocation = localStorage.getItem(LOCATION_STORAGE_KEY);
+setLocationText(storedLocation && storedLocation.trim() ? storedLocation : '📍 Location Unavailable');
+
+// Always attempt live geolocation once on load
+detectCurrentLocation();
+
+
 window.removeFromCart = (index) => {
   cart.splice(index, 1);
   saveCart();
@@ -788,6 +854,12 @@ document.addEventListener('keydown', (e) => {
 
 // Cart sidebar Checkout button -> open checkout modal
 const cartCheckoutBtn = document.querySelector('.cart-sidebar button.btn.btn-primary.has-after');
+
+/**
+ * NOTE: Location dropdown uses standalone listeners below.
+ * Keep this file order stable; avoid interfering with other initializations.
+ */
+
 if (cartCheckoutBtn) {
   cartCheckoutBtn.addEventListener('click', (e) => {
     e.preventDefault();
